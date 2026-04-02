@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon server.ts",
-    "start": "ts-node server.ts"
+    "dev": "node init && nodemon server.ts",
+    "start": "node init && ts-node server.ts"
   },
   "keywords": [],
   "author": "",
