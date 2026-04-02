@@ -1,0 +1,35 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Agent {
+  id         Int        @id @default(autoincrement())
+  name       String
+  email      String     @unique
+  isAdmin    Boolean    @default(false)
+  properties Property[]
+}
+
+model Property {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  price         Int
+  beds          Int
+  baths         Int
+  propertyType  String
+  suburb        String
+  agentId       Int
+  agent         Agent    @relation(fields: [agentId], references: [id])
+  statusNote    String?
+  createdAt     DateTime @default(now())
+
+  @@index([price])
+  @@index([suburb])
+  @@index([propertyType])
+  @@index([beds, baths])
+}
